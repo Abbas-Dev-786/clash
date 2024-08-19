@@ -103,4 +103,4 @@ web_modules/
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
 
 # remove dist folder
-dist
+dist/
