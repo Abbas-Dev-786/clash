@@ -29,7 +29,6 @@ const getHTML = async (fileName: string) => {
 
 const sendMail = async (to: string, subject: string, templateName: string) => {
   try {
-    console.log("sending email");
     const html = await getHTML(templateName);
 
     const mailOptions = {
