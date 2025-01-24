@@ -6,7 +6,7 @@ const sendProdError = (err: AppError, res: Response) => {
   if (err.isOperational) {
     return res
       .status(err.statusCode)
-      .json({ status: err.status, message: err.message });
+      .json({ status: err.status, message: err.message, errObj: err.errObj });
   } else {
     console.log(err + "💥");
 
@@ -24,12 +24,19 @@ const sendDevError = (err: AppError, res: Response) => {
     message: err.message,
     stack: err.stack,
     error: err,
+    // errObj: err.errObj,
   });
 };
 
 // DB schema validation error handler
 const handleValidationError = (err: ZodError) => {
-  return new AppError("Validation error", 400);
+  const errors: any = {};
+
+  err?.errors?.forEach((issue) => {
+    errors[issue.path?.[0]] = issue.message;
+  });
+
+  return new AppError("Validation error", 400, errors);
 };
 
 // JWT Generation error handler

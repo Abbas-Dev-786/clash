@@ -21,7 +21,8 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirName, "./views"));
 
 // Routes
-app.use("/api/v1/auth", authRouter);
+const ROUTE_BASE = "/api/v1";
+app.use(`${ROUTE_BASE}/auth`, authRouter);
 
 // handle unhandled routes
 app.all("*", (req, _, next) => {
