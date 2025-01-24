@@ -1,6 +1,6 @@
 import { Job, Queue, Worker } from "bullmq";
 import { defaultQueueOptions, redisConnection } from "../config/queue.js";
-import sendMail from "../services/Mail.js";
+import sendMail from "../services/Mail.service.js";
 
 interface EmailJobDataType {
   to: string;

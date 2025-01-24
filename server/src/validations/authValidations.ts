@@ -21,3 +21,12 @@ export const registerSchema = z
     message: "Confirm Password is not matching",
     path: ["confirm_password"],
   });
+
+export const loginSchema = z.object({
+  email: z
+    .string({ message: "email is required" })
+    .email({ message: "Invalid email address" }),
+  password: z
+    .string({ message: "password is required" })
+    .min(8, { message: "password must be atleast 8 characters long" }),
+});

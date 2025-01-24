@@ -1,9 +1,8 @@
 import express, { Application } from "express";
 import path from "path";
+import morgan from "morgan";
 import { fileURLToPath } from "url";
-import sendMail from "./services/Mail.js";
 import "./jobs/index.js";
-import { emailQueue, emailQueueName } from "./jobs/EmailJob.js";
 import authRouter from "./routes/authRoute.js";
 import AppError from "./utils/AppError.js";
 import globalErrorHandler from "./controllers/errorController.js";
@@ -11,6 +10,9 @@ import globalErrorHandler from "./controllers/errorController.js";
 export const __dirName = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Application = express();
+
+//logger
+app.use(morgan("dev"));
 
 // body middlewares
 app.use(express.json());
